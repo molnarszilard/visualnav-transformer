@@ -1,9 +1,4 @@
 <launch>
-    <!-- Launch the camera -->
-    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
-        <rosparam file="../config/camera.yaml" command="load" />
-    </node>
-    
     <!-- velocity mulitplexer -->
     <arg name="nodelet_manager_name"  value="nodelet_manager"/>
 

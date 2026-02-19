@@ -19,18 +19,18 @@ tmux splitw -h -p 50 # split it into two halves
 tmux select-pane -t 0
 tmux send-keys "useros1" Enter
 tmux send-keys "source /home/rocon/catkin_ws/devel/setup.bash" Enter
-tmux send-keys "roslaunch visnav_panther.launch" Enter
+tmux send-keys "roslaunch visnav_adr1m.launch" Enter
 
 # Run the ros1_bridge on the last panel
 tmux select-pane -t 2
 tmux send-keys "useros1" Enter
 tmux send-keys "useros2" Enter
-tmux send-keys "ros2 run ros1_bridge dynamic_bridge --bridge-all-topics" Enter
+tmux send-keys "ros2 run ros1_bridge dynamic_bridge" Enter #--bridge-all-topics
 
 # Run the teleop.py script in the second pane
 tmux select-pane -t 1
 tmux send-keys "useros1" Enter
-tmux send-keys "rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/panther/cmd_vel" Enter
+tmux send-keys "rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/ad_r1m_13/cmd_vel" Enter
 
 # Change the directory to ../topomaps/bags and run the rosbag record command in the third pane
 tmux select-pane -t 3
@@ -41,7 +41,7 @@ tmux send-keys "rosbag record /usb_cam/image_raw -o $1" # change topic if necess
 tmux select-pane -t 4
 tmux send-keys "useros2" Enter
 tmux send-keys "cd ../odometries" Enter
-tmux send-keys "ros2 bag record -o odom_GT_$(date +"%Y-%m-%d"-%H-%M-%S) /panther/battery /panther/cmd_vel /panther/imu_broadcaster/imu /panther/odometry/filtered /panther/odometry/wheels /panther/joint_states"
+tmux send-keys "ros2 bag record -o odom_adr1m_GT_$(date +"%Y-%m-%d"-%H-%M-%S) /ad_r1m_13/cmd_vel /ad_r1m_13/imu /ad_r1m_13/odometry/filtered"
 
 # relay rgb topic to usb_cam
 # tmux select-pane -t 4
